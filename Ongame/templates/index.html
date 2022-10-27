@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block conteudo %}
+    <div class="col-md-12 col-sm-8 col-xs-4"><br>
+        <a href="http://127.0.0.1:8000/notice?id={{c.id}}">
+            {% for foto in image %}
+                {% if c == foto.notice %}
+                    <div class="form-row">
+                        <table>
+                            <tr>
+<!--                                            <td><img src="{{foto.path_image}}" width= "250px" height= "150px"></td>-->
+<!--                                            <td width="300px">{{ c.title }}</td>-->
+                                <div class="container">
+                                    <td><img src="{{foto.path_image}}" width="250px" height="150px"></td>
+                                </div>
+                                <div class="container">
+                                    <td>{{c.title}}</td>
+                                </div>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </a>
+    </div>
+{% endblock %}

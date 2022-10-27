@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <div class="form-row">
+        <div class="container" id="button">
+            <a href="http://127.0.0.1:8000/logout/" class="btn btn-primary">Logout</a>
+            <a href="http://127.0.0.1:8000/home/" class="btn btn-primary">Home</a>
+        </div>
+    </div><br>
+    <div class="form-row">
+        <div class="container" id="novo">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <br><br>
+                {% for campo in new.visible_fields %}
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-8 col-xs-12">
+                            {% include 'field_menu.html' %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <br><input type="submit" value="Salvar Noticia" name="botao">
+            </form>
+        </div>
+    </div>
+
+    <form>
+        <div id="formulario">
+            <div class="form-group">
+                <button type="button" id="add-campo"> + </button>
+            </div>
+        </div>
+    </form>
+        <script>
+            var cont = 1;
+            $("#add-campo").click(function () {
+                cont++;
+				//https://api.jquery.com/append/
+                $("#formulario").append('<div class="image" id="image'+ cont + '"><button type="button" id="' + cont + '" class="btn-apagar"> - </button><form method="POST" enctype="multipart/form-data">{% csrf_token %}<br><br><div class="form-group"><div class="col-md-12 col-sm-8 col-xs-12"><input type="text" placeholder="Titulo"></div><br><div class="col-md-12 col-sm-12 col-xs-12"><textarea></textarea></div><br><div class="col-md-12 col-sm-12 col-xs-12"><input type="number"></div><br>Selecione as imagens: <input type="file" name="myFile"></div><br><br><input type="submit" value="Salvar Foto" name="botao"></form></div><br><br><br><br>');
+            });
+
+            $('form').on('click', '.btn-apagar', function () {
+                var button_id = $(this).attr("id");
+                $('#image' + button_id + '').remove();
+            });
+        </script>
+<!--    <div class="container" id="image">-->
+<!--        <form method="POST" enctype="multipart/form-data">-->
+<!--            {% csrf_token %}-->
+<!--            <br><br>-->
+<!--            <div class="button">-->
+
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <div class="col-md-12 col-sm-8 col-xs-12">-->
+<!--                    <input type="text" placeholder="Titulo">-->
+<!--                </div><br>-->
+<!--                <div class="col-md-12 col-sm-12 col-xs-12">-->
+<!--                    <textarea></textarea>-->
+<!--                </div><br>-->
+<!--                <div class="col-md-12 col-sm-12 col-xs-12">-->
+<!--                    <input type="number">-->
+<!--                </div><br>-->
+<!--                Selecione as imagens: <input type="file" name="myFile">-->
+<!--            </div>-->
+<!--            <br>-->
+<!--            <br>-->
+<!--            <input type="submit" value="Salvar Noticia" name="botao">-->
+<!--        </form>-->
+<!--    </div>-->
+
+{% endblock %}
