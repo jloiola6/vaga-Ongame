@@ -19,9 +19,9 @@
                 <div class="dropdown-menu white" aria-labelledby="postagens">
                     <a class="dropdown-item white" href="{% url 'post:add' %}">Criar postagem</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item white" href="">Listar postagens</a>
+                    <a class="dropdown-item white" href="{% url 'core:index' %}?myposts=True">Minhas postagens</a>
                 </div>
-            </li>    
+            </li>       
             
         </div>
     </div>

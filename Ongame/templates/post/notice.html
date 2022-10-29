@@ -39,12 +39,15 @@
         
         {% endif %}
         
-        <br>
-        <form method="POST">
-            {% csrf_token %}
-            <textarea name="comment" id="comment" cols="130" rows="4"></textarea>
-            <button class="btn btn-primary" type='submit'>Comentar</button>
-        </form>
+        {% if user %}
+            <br>
+            <form method="POST">
+                {% csrf_token %}
+                <textarea name="comment" id="comment" cols="130" rows="4"></textarea>
+                <button class="btn btn-primary" type='submit'>Comentar</button>
+            </form>
+        {% endif %}
+        
     </div>
     
     
