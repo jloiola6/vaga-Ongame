@@ -1,0 +1,51 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container col-lg-12">
+        <div class="card mt-5 col-lg-12">
+            <div class="card-body"><br>
+                <h4>{{ post.title }}</h4>
+                <p>{{ post.category }}</p>
+                <p>Publicado: {{ post.create_at }}</p>
+
+                {% if post.image %}
+                {{ post.path_image }}
+                    <div class="d-flex justify-content-center">
+                        <img class="justify-content-center" src="{% static post.path_image %}" alt="" width="250" height="250">
+                    </div>
+                {% endif %}
+
+                <p>{{ post.text|linebreaks }}</p>
+                <hr>
+                <p>Autor: {{ post.author.name }}</p>
+            </div>
+        </div>
+        <br>
+
+        {% if comments %}
+            <br>
+            <h5>Comentários</h5>
+            <div class="card col-lg-12">
+                {% for comment in comments %}
+                    <div class="card-body">
+                        <p>Autor: {{ post.author.name }}</p>
+                        <p>Publicado: {{ post.create_at }}</p>
+                        <p>{{ post.text|linebreaks }}</p>
+                    </div>
+                    <hr>
+                {% endfor %}    
+            </div>
+        
+        {% endif %}
+        
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="comment" id="comment" cols="130" rows="4"></textarea>
+            <button class="btn btn-primary" type='submit'>Comentar</button>
+        </form>
+    </div>
+    
+    
+{% endblock %}

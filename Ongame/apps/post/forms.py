@@ -16,24 +16,8 @@ class FormNew(ModelForm):
     class Meta():
         model = Notice
         fields = '__all__'
+        exclude = ['author']
 
-
-class FormImg(ModelForm):
-    def __init__(self, *args, **kwargs):
-        notice = Notice.objects.all()
-        lista = []
-        for i in notice:
-            lista.append(i.title)
-        for f in self.base_fields:
-            self.base_fields[f].widget.attrs['class'] = 'form-control'
-            self.base_fields[f].widget.attrs['title'] = self.base_fields[f].label
-            self.base_fields[f].widget.attrs['placeholder'] = self.base_fields[f].label
-            self.base_fields[f].widget.attrs['data-toggle'] = 'tooltip'
-        super(FormImg, self).__init__(*args, **kwargs)
-
-    class Meta():
-        model = Image
-        fields = 'title_img', 'description', 'sequence'
 
 
 

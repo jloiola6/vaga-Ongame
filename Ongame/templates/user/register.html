@@ -1,0 +1,35 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+    <div class="card m-5 col-lg-6">
+        <h1>Login</h1>
+        <div class="card-body"><br>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for campo in form.visible_fields %}
+                        <div class="form-group">
+                            {% if campo.erros %}
+                                <div class="alert-danger" align="center">
+                                    {% for error in campo.errors %}
+                                        {{ error|striptags }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {{ campo }}
+                        </div>
+                    {% endfor %}
+
+                    <div class="modal-footer justify-content-center">
+                        <div class="form-group col-lg-12">
+                            <a class="btn btn-primary col-lg-12" href="{% url 'user:register' %}">
+                                <span>Cadastre</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

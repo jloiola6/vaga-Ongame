@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+    <div class="card m-5 col-lg-6">
+        <h1>Login</h1>
+        <div class="card-body"><br>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-control" placeholder="username" required="required">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="password" class="form-control" required="required"><br>
+                    </div>
+
+                    {% if error %}
+                        <p class= "error d-flex justify-content-center">Usuário ou senha inválida</p>
+                    {% endif %}
+
+                    <div class="modal-footer justify-content-center">
+                        <div class="form-group col-lg-6">
+                            <button class="btn btn-primary col-lg-12" type='submit' >Entrar</button>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <a class="btn btn-primary col-lg-12" href="{% url 'user:register' %}">
+                                <span>Cadastre</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

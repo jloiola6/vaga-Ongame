@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from django import forms
+import hashlib
 
 from apps.user.models import *
 
@@ -12,6 +13,7 @@ class Form_Register(ModelForm):
             self.base_fields[f].widget.attrs['placeholder'] = self.base_fields[f].label
             self.base_fields[f].widget.attrs['data-toggle'] = 'tooltip'
         super(Form_Register, self).__init__(*args, **kwargs)
+
 
     class Meta():
         model = User

@@ -1,29 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'partials/base.html' %}
 {% load static %}
 
-{% block conteudo %}
-    <div class="col-md-12 col-sm-8 col-xs-4"><br>
-        <a href="http://127.0.0.1:8000/notice?id={{c.id}}">
-            {% for foto in image %}
-                {% if c == foto.notice %}
-                    <div class="form-row">
-                        <table>
-                            <tr>
-<!--                                            <td><img src="{{foto.path_image}}" width= "250px" height= "150px"></td>-->
-<!--                                            <td width="300px">{{ c.title }}</td>-->
-                                <div class="container">
-                                    <td><img src="{{foto.path_image}}" width="250px" height="150px"></td>
-                                </div>
-                                <div class="container">
-                                    <td>{{c.title}}</td>
-                                </div>
-                            </tr>
+{% block content %}
+    <div class="container col-lg-12">
+        {% for post in posts %}
+            <a href="{% url 'post:notice' %}?id={{ post.id }}">
+                <div class="card mt-5 col-lg-12">
+                    <div class="card-body"><br>
+                        <h4>{{ post.title }}</h4>
+                        <p>{{ post.category }}</p>
+                        <p>Publicado: {{ post.create_at }}</p>
 
-                        </table>
+                        {% if post.image %}
+                            <div class="d-flex justify-content-center">
+                                <img class="justify-content-center" src="{{ post.image }}" alt="" width="250" height="250">
+                            </div>
+                        {% endif %}
 
+                        <p>{{ post.text|linebreaks }}</p>
+                        <hr>
+                        <p>Autor: {{ post.author.name }}</p>
                     </div>
-                {% endif %}
-            {% endfor %}
-        </a>
+                </div>
+            </a>
+        {% endfor %}    
     </div>
+    
+    
 {% endblock %}
