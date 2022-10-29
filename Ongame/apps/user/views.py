@@ -45,6 +45,7 @@ def login(request):
 def register(request):
     template_name = 'user/register.html'
     
+    user = False    
     if request.GET.get('edit'):
         user = User.objects.get(login= request.session['login'])
         form = Form_Register(instance= user)

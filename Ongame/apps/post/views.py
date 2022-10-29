@@ -19,7 +19,7 @@ def notice(request):
     id = request.GET.get('id')
     post = Notice.objects.get(id= int(id))
     comments = Comment.objects.filter(notice= post)
-
+    
     if request.method == 'POST':
         comment = Comment()
         comment.author = user

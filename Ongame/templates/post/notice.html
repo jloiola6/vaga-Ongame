@@ -29,9 +29,9 @@
             <div class="card col-lg-12">
                 {% for comment in comments %}
                     <div class="card-body">
-                        <p>Autor: {{ post.author.name }}</p>
-                        <p>Publicado: {{ post.create_at }}</p>
-                        <p>{{ post.text|linebreaks }}</p>
+                        <p>Autor: {{ comment.author.name }}</p>
+                        <p>Publicado: {{ comment.create_at }}</p>
+                        <p>{{ comment.text|linebreaks }}</p>
                     </div>
                     <hr>
                 {% endfor %}    
