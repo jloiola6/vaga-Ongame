@@ -5,8 +5,8 @@ from apps.user.models import User
 # Create your models here.
 class Notice(models.Model):
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING, null= True)
-    title = models.CharField('Titulo', max_length=60)
-    category = models.CharField('Categoria', max_length=60)
+    title = models.CharField('Titulo', max_length=60)   
+    category = models.CharField('Categoria', max_length=60, choices=(('Jogos','Jogos'),('Serviços','Serviços'),('Suporte', 'Suporte'),('Compras', 'Compras')), default='Masculino')
     text = models.TextField('Texto')
     image = models.FileField(null= True, blank= True)
 

@@ -13,12 +13,12 @@ def index(request):
     if verification(request):
         user = User.objects.get(login= request.session['login'])
 
+    template_name = 'index.html'
+    
     posts = Notice.objects.all().order_by('-id')
     if request.GET.get('myposts'):
         posts = posts.filter(author= user)
 
-
-    template_name = 'index.html'
 
     return TemplateResponse(request, template_name, locals())
 

@@ -1,6 +1,5 @@
 from django.forms import ModelForm
 from django import forms
-import hashlib
 
 from apps.user.models import *
 
